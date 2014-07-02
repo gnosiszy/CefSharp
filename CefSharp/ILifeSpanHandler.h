@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #pragma once
 
+#include "WindowInfo.h"
+
 using namespace System;
 
 namespace CefSharp
@@ -8,7 +10,7 @@ namespace CefSharp
     public interface class ILifeSpanHandler
     {
     public:
-        bool OnBeforePopup(IWebBrowser^ browser, String^ url, int% x, int% y, int% width, int% height);
+        bool OnBeforePopup(IWebBrowser^ browser, String^ url, IWindowInfo^ windowInfo);
         void OnBeforeClose(IWebBrowser^ browser);
     };
 }

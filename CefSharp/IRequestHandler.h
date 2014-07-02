@@ -1,6 +1,7 @@
 #include "Stdafx.h"
 #pragma once
 
+#include "Frame.h"
 #include "RequestResponse.h"
 
 using namespace System;
@@ -22,7 +23,7 @@ namespace CefSharp
     public interface class IRequestHandler
     {
     public:
-        bool OnBeforeBrowse(IWebBrowser^ browser, IRequest^ request, NavigationType naigationvType, bool isRedirect);
+        bool OnBeforeBrowse(IWebBrowser^ browser, IFrame^ frame, IRequest^ request, NavigationType naigationvType, bool isRedirect);
         bool OnBeforeResourceLoad(IWebBrowser^ browser, IRequestResponse^ requestResponse);
         void OnResourceResponse(IWebBrowser^ browser, String^ url, int status, String^ statusText, String^ mimeType, WebHeaderCollection^ headers);
         bool GetDownloadHandler(IWebBrowser^ browser, String^ mimeType, String^ fileName, Int64 contentLength, IDownloadHandler ^% handler);

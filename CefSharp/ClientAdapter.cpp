@@ -5,6 +5,7 @@
 #include "CefSharp.h"
 #include "StreamAdapter.h"
 #include "DownloadAdapter.h"
+#include "Frame.h"
 #include "IWebBrowser.h"
 #include "ILifeSpanHandler.h"
 #include "ILoadHandler.h"
@@ -12,6 +13,7 @@
 #include "IMenuHandler.h"
 #include "IKeyboardHandler.h"
 #include "IJsDialogHandler.h"
+#include "WindowInfo.h"
 
 using namespace std;
 using namespace CefSharp::Internals::JavascriptBinding;
@@ -26,8 +28,7 @@ namespace CefSharp
             return false;
         }
 
-        return handler->OnBeforePopup(_browserControl, toClr(url),
-            windowInfo.m_x, windowInfo.m_y, windowInfo.m_nWidth, windowInfo.m_nHeight);
+        return handler->OnBeforePopup(_browserControl, toClr(url), WindowInfo::Wrap(windowInfo));
     }
 
     void ClientAdapter::OnAfterCreated(CefRefPtr<CefBrowser> browser)
@@ -152,7 +153,7 @@ namespace CefSharp
 
         String^ errorString = nullptr;
         handler->OnLoadError(_browserControl, toClr(failedUrl), errorCode, errorString);
-
+        
         if (errorString == nullptr)
         {
             return false;
@@ -175,7 +176,7 @@ namespace CefSharp
         CefRequestWrapper^ wrapper = gcnew CefRequestWrapper(request);
         NavigationType navigationType = (NavigationType)navType;
 
-        return handler->OnBeforeBrowse(_browserControl, wrapper, navigationType, isRedirect);
+        return handler->OnBeforeBrowse(_browserControl, Frame::Wrap(frame), wrapper, navigationType, isRedirect);
     }
 
     bool ClientAdapter::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefRequest> request, CefString& redirectUrl, CefRefPtr<CefStreamReader>& resourceStream, CefRefPtr<CefResponse> response, int loadFlags)

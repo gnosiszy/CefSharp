@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Internals\JavascriptBinding\BindingHandler.cpp" />
     <ClCompile Include="BrowserCore.cpp" />
     <ClCompile Include="BrowserSettings.cpp" />
@@ -142,8 +143,10 @@
     <ClCompile Include="StreamAdapter.cpp" />
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="TypeUtil.cpp" />
+    <ClCompile Include="WindowInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Frame.h" />
     <ClInclude Include="IJsDialogHandler.h" />
     <ClInclude Include="Internals\JavascriptBinding\UnmanagedWrapper.h" />
     <ClInclude Include="Internals\JavascriptBinding\BindingHandler.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="TypeUtil.h" />
     <ClInclude Include="vcclr_local.h" />
+    <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
